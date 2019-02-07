@@ -1,0 +1,18 @@
+<p>
+  servers works!
+  <app-server></app-server>
+  <app-server></app-server>
+</p>
+
+<!--making html disable negative(because of !) in relation to .ts file parameter "allowNewServer-->
+<!-- adding on click action -->
+  <button class="btn btn-primary"
+          [disabled]="!allowNewServer"
+          (click)="onCreateServer()"
+  >
+    Add server
+  </button>
+<!--text by property binding, not string interpolation-->
+<p [innerText]="allowNewServer"></p>
+
+<p [innerText]="serverCreationStatus"></p>

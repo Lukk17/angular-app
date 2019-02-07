@@ -1,0 +1,19 @@
+<hr>
+<p>Server Component</p>
+
+<div>
+  <p>
+    <!--string which willl be displayed as normal text - can be a method returning string-->
+    {{ 'Server'}}
+
+    with ID
+
+    <!--using interpolation to get parameters from server-components.ts file-->
+    {{ serverId }} is {{ serverStatus }}
+
+    <!--using method-->
+    and method is returning {{getServerStatus()}}
+  </p>
+</div>
+
+<hr>
