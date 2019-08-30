@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Offer} from "../offer.model";
 import {AppComponent} from "../../app.component";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-offers-list',
@@ -8,6 +9,7 @@ import {AppComponent} from "../../app.component";
   styleUrls: ['./offers-list.component.css']
 })
 export class OffersListComponent implements OnInit {
+  @Output() readyToBook = new EventEmitter<Offer>();
 
   offers: Offer[] = [
     new Offer('Sheraton', 'hotel', 'https://www.sheratonsopot.pl/resourcefiles/home-content-section-image/sopot-view.jpg'),
@@ -22,6 +24,6 @@ export class OffersListComponent implements OnInit {
   }
 
   bookOffer(offer: Offer) {
-    AppComponent.bookedRooms.push(offer);
+    this.readyToBook.emit(offer);
   }
 }
