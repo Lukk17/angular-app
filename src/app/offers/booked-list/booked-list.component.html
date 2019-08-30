@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form>
+      <div class="col-sm-5 form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="hotelName" name="unknown">
+      </div>
+      <div class="col-xs-12">
+        <button class="btn btn-success" type="submit" (click)="onAddClick()">Add</button>
+        <button class="btn btn-danger" type="button" (click)="onDeleteClick()">Delete</button>
+        <button class="btn btn-primary" type="button" (click)="onClearClick()">Clear</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-5" style="position: fixed; left: 33%">
+    <a *ngFor="let bookedRoom of bookedRooms" class="list-group-item clearfix">
+      <div class="pull-left">
+        <h3 class="list-group-item-heading">{{bookedRoom.name}}</h3>
+        <p class="list-group-item-text">{{bookedRoom.description}}</p>
+      </div>
+      <div class="pull-right">
+        <img src="{{bookedRoom.imagePath}}" class="img-responsive" style="max-height: 50px">
+      </div>
+    </a>
+  </div>
+</div>
