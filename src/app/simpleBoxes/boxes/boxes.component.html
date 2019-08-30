@@ -1,0 +1,26 @@
+<p>
+  servers works!
+  <app-server [serverName]="server" *ngFor="let server of servers"></app-server>
+</p>
+
+<label>
+  <input type="text" [(ngModel)]="serverName" class="input-sm">
+</label>
+<p>{{serverName}}</p>
+
+<!--making html disable negative(because of !) in relation to .ts file parameter "allowNewServer-->
+<!-- adding on click action -->
+<button class="btn btn-primary"
+        [disabled]="!allowNewServer"
+        (click)="onCreateServer()"
+>
+  Add server
+</button>
+<p *ngIf="allowNewServer; else noServer"> Now server can be added </p>
+<ng-template #noServer>
+  <p>Wait, loading...</p>
+</ng-template>
+
+<!--text by property binding, not string interpolation-->
+<p [innerText]="allowNewServer"></p>
+<p [innerText]="serverCreationStatus"></p>

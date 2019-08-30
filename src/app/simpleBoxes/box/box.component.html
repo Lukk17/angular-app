@@ -1,0 +1,15 @@
+<hr>
+<p>Server Component</p>
+<div>
+  <p [ngStyle]="{backgroundColor: getColor()}"
+     [ngClass]="{online:serverStatus=='online'}">
+    <!--string which will be displayed as normal text - can be a method returning string-->
+    {{ 'Server '}} {{serverName}}
+    with ID
+    <!--using interpolation to get parameters from server-components.ts file-->
+    {{ serverId.toFixed(0) }} is {{ serverStatus }}
+    <!--using method-->
+    and method is returning {{getServerStatus()}}
+  </p>
+</div>
+<hr>

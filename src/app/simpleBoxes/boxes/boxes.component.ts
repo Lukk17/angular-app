@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-servers',
-  templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.css']
+  templateUrl: './boxes.component.html',
+  styleUrls: ['./boxes.component.css']
 })
-export class ServersComponent implements OnInit {
+export class BoxesComponent implements OnInit {
 
-  allowNewServer = false;
+  public allowNewServer = false;
   serverCreationStatus = 'No server created';
+  servers = ['server1', 'server2'];
+  serverName = 'newServer';
 
   constructor() {
     // after given time (2 secs) parameter will change to true changing html button
-    setTimeout( () => {
+    setTimeout(() => {
       this.allowNewServer = true;
     }, 2000);
   }
@@ -22,5 +24,6 @@ export class ServersComponent implements OnInit {
 
   onCreateServer() {
     this.serverCreationStatus = 'Server was created';
+    this.servers.push(this.serverName);
   }
 }
