@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Offer} from "../offer.model";
-import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-booked-list',
@@ -23,7 +22,6 @@ export class BookedListComponent implements OnInit {
 
   onClearClick() {
     this.readyToClear.emit();
-    // this.bookedRooms = [];
   }
 
   onDeleteClick() {
