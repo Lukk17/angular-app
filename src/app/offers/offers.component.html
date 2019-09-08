@@ -1,7 +1,20 @@
 <hr>
+<!--  use custom structural directive  -->
+<div *appUnless="false">
+  <h3 appBasicHighlight>Offers</h3>
+</div>
+<!--  use custom structural directive via ng-template - ngFor and ngIf can be used same way  -->
+<ng-template [appUnless]="false">
+  <h3 appBasicHighlight>Offers: ng-template</h3>
+</ng-template>
+
+<!--  use custom directive  -->
+<h3 appRendererHighlight [initialColor]="'red'" [defaultColor]="'yellow'" [activeColor]="'blue'">Offers : renderer</h3>
+<hr>
+
 <div class="row">
   <div class="col-md-5">
-    <app-offers-list (readyToBook)="bookOffer($event)" ></app-offers-list>
+    <app-offers-list (readyToBook)="bookOffer($event)"></app-offers-list>
   </div>
   <div class="col-md-6">
     <app-offer-detail></app-offer-detail>
