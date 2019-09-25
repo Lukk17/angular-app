@@ -14,6 +14,13 @@ import {BasicHighlightDirective} from "./directive/basic-highlight.directive";
 import {RendererHighlightDirective} from './directive/renderer-highlight.directive';
 import {AppUnlessDirective} from './directive/app-unless.directive';
 import {DropdownDirective} from './directive/dropdown.directive';
+import {RouterModule, Routes} from "@angular/router";
+import {ExtrasComponent} from './extras/extras.component';
+
+const appRoutes: Routes = [
+  {path: '', component: OffersComponent},
+  {path: 'extras', component: ExtrasComponent}
+]
 
 @NgModule({
   declarations: [
@@ -28,11 +35,13 @@ import {DropdownDirective} from './directive/dropdown.directive';
     BasicHighlightDirective,
     RendererHighlightDirective,
     AppUnlessDirective,
-    DropdownDirective
+    DropdownDirective,
+    ExtrasComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

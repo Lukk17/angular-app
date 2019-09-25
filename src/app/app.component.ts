@@ -9,7 +9,7 @@ import {LoggingService} from "./services/logging.service";
   // if added here to provider - service will be accessible by every child
   // as this is main class,
   // every component is child of it and will have access to this providers
-  providers: [LoggingService]
+  providers: [LoggingService],
 })
 export class AppComponent {
   name = 'Sky';
