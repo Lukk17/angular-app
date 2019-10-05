@@ -19,6 +19,9 @@ import {ExtrasComponent} from './extras/extras.component';
 
 const appRoutes: Routes = [
   {path: '', component: OffersComponent},
+  {path: 'offers', component: OffersComponent},
+  // for offers detail link, ":name" where name can be anything
+  {path: 'offers/:name/:desc', component: OfferDetailComponent},
   {path: 'extras', component: ExtrasComponent}
 ]
 

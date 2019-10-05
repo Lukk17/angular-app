@@ -15,7 +15,7 @@
 </div>
 <div class="row">
   <div class="col-md-5" style="position: fixed; left: 33%">
-    <a *ngFor="let bookedRoom of bookedOffers" class="list-group-item clearfix">
+    <a *ngFor="let bookedRoom of bookedOffers" class="list-group-item clearfix" routerLink="/offers/{{bookedRoom.name}}/{{bookedRoom.description}}">
       <div class="pull-left">
         <h3 class="list-group-item-heading">{{bookedRoom.name}}</h3>
         <p class="list-group-item-text">{{bookedRoom.description}}</p>
