@@ -3,12 +3,13 @@
       <a class="navbar-brand" (click)="routeToHome()" >Sky</a>
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
+<!--   routerLinkActive will add CSS class when this route is active     -->
         <li routerLinkActive="active"><a routerLink="/offers">Offers</a></li>
         <li routerLinkActive="active"><a routerLink="/extras">extras</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdown>
-          <a href="#" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+          <a class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a>menu</a></li>
           </ul>

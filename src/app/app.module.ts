@@ -14,16 +14,9 @@ import {BasicHighlightDirective} from "./directive/basic-highlight.directive";
 import {RendererHighlightDirective} from './directive/renderer-highlight.directive';
 import {AppUnlessDirective} from './directive/app-unless.directive';
 import {DropdownDirective} from './directive/dropdown.directive';
-import {RouterModule, Routes} from "@angular/router";
 import {ExtrasComponent} from './extras/extras.component';
+import {AppRoutingModule} from "./app-routing.module";
 
-const appRoutes: Routes = [
-  {path: '', component: OffersComponent},
-  {path: 'offers', component: OffersComponent},
-  // for offers detail link, ":name" where name can be anything
-  {path: 'offers/:name/:desc', component: OfferDetailComponent},
-  {path: 'extras', component: ExtrasComponent}
-]
 
 @NgModule({
   declarations: [
@@ -44,7 +37,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

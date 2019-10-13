@@ -50,4 +50,5 @@ export class BookedListComponent implements OnInit {
       this.bookedOffers.push(new Offer(this.hotelName, 'unknown', 'http://www.dubaideluxe.pl/images/hotels/336/burj-al-arab-5.jpg'))
     }
   }
+
 }
