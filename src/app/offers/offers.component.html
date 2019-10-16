@@ -14,6 +14,8 @@
 
 <div class="row">
   <div class="col-md-5">
+<!--  catch readyToBook from offers-list.components.ts  -->
+<!--  $event is what is defined in subject and pushed with .next() method  -->
     <app-offers-list (readyToBook)="bookOffer($event)"></app-offers-list>
   </div>
   <div class="col-md-6">
@@ -21,7 +23,9 @@
   </div>
 </div>
 <!--
- @Input() bookedListOffers (alias to bookedOffers) from BookedListComponent will be filled with bookedOffers from OffersComponent bookedOffers parameter
- @Output bookedListClean (alias to readyToClear) event is emitted from BookedListComponent and will lunch clearBooked() method in OffersComponent
+ @Input() bookedListOffers (alias to bookedOffers) from BookedListComponent will be filled with bookedOffers
+ from OffersComponent bookedOffers parameter
+ @Output bookedListClean (alias to readyToClear) subject's /next() method is called from BookedListComponent
+ and will lunch clearBooked() method in OffersComponent (no $event value need to be passed here)
 -->
 <app-booked-list [bookedListOffers]="bookedOffers" (bookedListClean)="clearBooked()"></app-booked-list>

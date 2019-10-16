@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {LoggingService} from "./services/logging.service";
+import {OffersService} from "./services/offers.service";
 
 @Component({
   // this selector is used in index.html
@@ -9,7 +10,7 @@ import {LoggingService} from "./services/logging.service";
   // if added here to provider - service will be accessible by every child
   // as this is main class,
   // every component is child of it and will have access to this providers
-  providers: [LoggingService],
+  providers: [LoggingService, OffersService],
 })
 export class AppComponent {
   name = 'Sky';
