@@ -16,6 +16,7 @@ import {AppUnlessDirective} from './directive/app-unless.directive';
 import {DropdownDirective} from './directive/dropdown.directive';
 import {ExtrasComponent} from './extras/extras.component';
 import {AppRoutingModule} from "./app-routing.module";
+import {FormComponent} from './form/form.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {AppRoutingModule} from "./app-routing.module";
     RendererHighlightDirective,
     AppUnlessDirective,
     DropdownDirective,
-    ExtrasComponent
+    ExtrasComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,

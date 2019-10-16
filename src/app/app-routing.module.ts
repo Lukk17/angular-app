@@ -3,6 +3,7 @@ import {OffersComponent} from "./offers/offers.component";
 import {OfferDetailComponent} from "./offers/offer-detail/offer-detail.component";
 import {ExtrasComponent} from "./extras/extras.component";
 import {NgModule} from "@angular/core";
+import {FormComponent} from "./form/form.component";
 
 //  in app.component.html there must be added
 //  <router-outlet></router-outlet>
@@ -16,7 +17,8 @@ const appRoutes: Routes =[
       // for offers detail link, ":name" where name can be anything
       {path: ':name/:desc', component: OfferDetailComponent},
     ]},
-  {path: 'extras', component: ExtrasComponent}
+  {path: 'extras', component: ExtrasComponent},
+  {path: 'form', component: FormComponent}
 ]
 
 @NgModule({

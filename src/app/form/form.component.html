@@ -1,0 +1,109 @@
+
+<div class=row>
+  <hr>
+</div>
+<h1> Template-Driven (TD) </h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--   submit inside form element
+            not on button which will trigger default HTML and JS submitting
+            #form will be local reference and can be accessed by angular method
+            ngForm tells angular to get us access to js object created by angular  -->
+      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <!--    split form and group it - can helps to check each group validity, touched etc   -->
+        <div id="user-data"
+             ngModelGroup="userData"
+             #userGroup="ngModelGroup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <!--        ngModel make angular know that this input is form controller
+                        name will register it in javascript object representation
+                        CSS style for invalid inputs in CSS file -->
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              ngModel
+              name="username"
+              required
+              #username="ngModel">
+          </div>
+          <!--      show text if input was touched and is invalid
+                    #username is show text only if this input is wrong, not any in form  -->
+          <p *ngIf="username.invalid && username.touched"> Please enter valid value</p>
+          <button
+            class="btn btn-default"
+            type="button"
+            (click)="suggestUsername()">Suggest an Username
+          </button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel">
+            <span class="help-block" *ngIf="email.invalid && email.touched"> Please enter a valid email!</span>
+          </div>
+        </div>
+        <!--    check validity of group      -->
+        <p *ngIf="userGroup.invalid && userGroup.touched">User data is invalid</p>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <!--      default select set by ngModel property binding
+                    can be bound with property from .ts file as well  -->
+          <select
+            id="secret"
+            class="form-control"
+            [ngModel]="'pet'"
+            name="secret">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <!--    two way binding to show what user is typing          -->
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            name="answer"
+            rows="3"
+            [(ngModel)]="answer"></textarea>
+        </div>
+        <p>Your replay: {{ answer}} </p>
+        <!--    disable button if form is not valid      -->
+        <div class="radio" *ngFor="let gender of genders">
+          <!--    [ngModel] for default value      -->
+          <label>
+            <input type="radio"
+                   name="gender"
+                   [ngModel]="'man'"
+                   [value]="gender">
+            {{gender}}
+          </label>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!form.valid">Submit
+        </button>
+      </form>
+    </div>
+  </div>
+<!--  summary of data after submitting -->
+  <div class="row"
+       *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3> Your data:</h3>
+      <p>Username: {{user.username}}</p>
+      <p>email: {{user.email}}</p>
+      <p>secret: {{user.secret}}</p>
+      <p>answer: {{user.answer}}</p>
+      <p>gender: {{user.gender}}</p>
+    </div>
+  </div>
+</div>
