@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--      inform angular to use form from .ts file as property binding  -->
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <!--    each formGroup need to be wrapped into separate div    -->
+        <div formGroupName="userData">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control">
+            <!--      access validity through .ts object
+                      in CSS file style of border is set up if invalid and touched
+                      userData.username is path because username is in userData formGroup (in div above)  -->
+            <span
+              *ngIf="signUpForm.get('userData.username').invalid && signUpForm.get('userData.username').touched"
+              class="help-block">
+              <!--         check for error from required    -->
+              <span *ngIf="signUpForm.get('userData.username').errors['required']"> Enter username</span>
+              <!--         check for error from custom validator     -->
+            <span
+              *ngIf="signUpForm.get('userData.username').errors['nameIsForbidden']"
+              class="help-block"> Forbidden name !</span>
+               </span>
+          </div>
+          <div class="form-group">
+            <label for="email">email</label>
+            <input
+              type="text"
+              id="email"
+              formControlName="email"
+              class="form-control">
+          </div>
+        </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+              formControlName="gender"
+              type="radio"
+              [value]="gender">{{ gender }}
+          </label>
+        </div>
+        <!--    add elements which user adds    -->
+        <div formArrayName="hobbies">
+          <h4> Your Hobbies</h4>
+          <button class="btn btn-default" type="button" (click)="onAddHobby()"> Add Hobby</button>
+          <div class="form-group"
+               *ngFor="let hobby of controls, let i = index">
+            <!--        formControlName must be bind to name of control which is dynamic as user can type it
+                        but it is always same as index of given div   -->
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+      </form>
+    </div>
+  </div>
+</div>

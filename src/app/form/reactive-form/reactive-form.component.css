@@ -1,0 +1,5 @@
+/*  as angular adds selectors to invalid and touched inputs it can be used here
+    to add some style to it */
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

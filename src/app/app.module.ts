@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {BoxComponent} from './simpleBoxes/box/box.component';
@@ -17,6 +17,7 @@ import {DropdownDirective} from './directive/dropdown.directive';
 import {ExtrasComponent} from './extras/extras.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {FormComponent} from './form/form.component';
+import {ReactiveFormComponent} from './form/reactive-form/reactive-form.component';
 
 
 @NgModule({
@@ -35,10 +36,12 @@ import {FormComponent} from './form/form.component';
     DropdownDirective,
     ExtrasComponent,
     FormComponent,
+    ReactiveFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [],
