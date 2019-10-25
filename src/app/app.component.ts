@@ -13,7 +13,6 @@ import {OffersService} from "./services/offers.service";
   providers: [LoggingService, OffersService],
 })
 export class AppComponent {
-  name = 'Sky';
 }
 
 // to create new component type in terminal (inside project dir)

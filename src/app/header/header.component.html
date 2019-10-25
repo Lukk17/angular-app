@@ -1,12 +1,13 @@
 <nav class="navbar-default">
   <div class="container-fluid ">
-      <a class="navbar-brand" (click)="routeToHome()" >Sky</a>
+      <a class="navbar-brand" (click)="routeToHome()" >Angular</a>
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
 <!--   routerLinkActive will add CSS class when this route is active     -->
         <li routerLinkActive="active"><a routerLink="/offers">Offers</a></li>
         <li routerLinkActive="active"><a routerLink="/extras">extras</a></li>
         <li routerLinkActive="active"><a routerLink="/form">form</a></li>
+        <li routerLinkActive="active"><a routerLink="/firebase">firebase</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdown>

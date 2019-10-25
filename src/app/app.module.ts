@@ -18,6 +18,8 @@ import {ExtrasComponent} from './extras/extras.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {FormComponent} from './form/form.component';
 import {ReactiveFormComponent} from './form/reactive-form/reactive-form.component';
+import {FirebaseComponent} from './firebase/firebase.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -37,12 +39,14 @@ import {ReactiveFormComponent} from './form/reactive-form/reactive-form.componen
     ExtrasComponent,
     FormComponent,
     ReactiveFormComponent,
+    FirebaseComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
