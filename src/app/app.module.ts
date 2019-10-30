@@ -19,7 +19,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormComponent} from './form/form.component';
 import {ReactiveFormComponent} from './form/reactive-form/reactive-form.component';
 import {FirebaseComponent} from './firebase/firebase.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {InterceptorService} from "./firebase/interceptor.service";
 
 
 @NgModule({
@@ -48,7 +49,15 @@ import {HttpClientModule} from "@angular/common/http";
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+
+  // interceptors service must be provided here as below:
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
