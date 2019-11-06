@@ -33,9 +33,7 @@ export class AuthComponent implements OnInit {
 
     const email = authForm.value.email;
     const password = authForm.value.password;
-
     let authObs: Observable<AuthResponseData>;
-
     this.isLoading = true;
 
     if (this.isLoginMode) {

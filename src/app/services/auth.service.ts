@@ -16,6 +16,9 @@ export interface AuthResponseData {
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+  private LOCAL_STORAGE_USERDATA = 'userData';
+  private tokenExpirationTime: any;
+
   // API key is in firebase project settings
   // <appAddress>/settings/general/
   private firebaseAPIkey = 'AIzaSyApUv_owosn0Lufw9ZtJs5f5xigHur6paE';
@@ -23,6 +26,7 @@ export class AuthService {
   private signUpURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
   private logInURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
 
+  // behavior subject remember last value even before it was created
   user = new BehaviorSubject<User>(null);
 
   constructor(
@@ -38,9 +42,9 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }).pipe(
-      catchError(this.handleError),
+      catchError(AuthService.handleError),
       tap(respData => {
-          this.handleAuth(respData);
+        this.handleAuth(respData);
       })
     )
   }
@@ -51,7 +55,7 @@ export class AuthService {
       password: password,
       returnSecureToken: true
     }).pipe(
-      catchError(this.handleError),
+      catchError(AuthService.handleError),
       tap(respData => {
         this.handleAuth(respData);
       })
@@ -60,18 +64,64 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    this.router.navigate(['/auth'])
+    this.router.navigate(['/auth']);
+    localStorage.removeItem(this.LOCAL_STORAGE_USERDATA);
+
+    // when logout clear tokenExpirationTime to stop autoLogout
+    if (this.tokenExpirationTime) {
+      clearTimeout(this.tokenExpirationTime);
+    }
+    this.tokenExpirationTime = null;
   }
 
-  private handleAuth(respData: AuthResponseData){
+  autoLogout(expirationDuration: number) {
+    this.tokenExpirationTime = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
+  }
+
+  autoLogin() {
+    const userData: {
+      email: string,
+      id: string,
+      _token: string,
+      _tokenExpirationDate: string
+    } = JSON.parse(localStorage.getItem(this.LOCAL_STORAGE_USERDATA));
+    if (userData) {
+      const loadedUser = new User(
+        userData.email,
+        userData.id,
+        userData._token,
+        new Date(userData._tokenExpirationDate)
+      );
+
+      // if token is not valid it will return null (which will be false)
+      // (as defined in getter inside user.model.ts)
+      if (loadedUser.token) {
+        this.user.next(loadedUser);
+        const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+
+        this.autoLogout(expirationDuration);
+      }
+    }
+  }
+
+  private handleAuth(respData: AuthResponseData) {
     // extra + before respData to convert it to number
-    const expirationDate = new Date(new Date().getTime() + +respData.expiresIn *1000);
+    const expirationDate = new Date(new Date().getTime() + +respData.expiresIn * 1000);
     const user = new User(respData.email, respData.localId, respData.idToken, expirationDate);
     // send user from response to any subscriber to 'user' subject
     this.user.next(user);
+    // save data to more permanent memory,
+    // which can survive site reload and browser restart
+    // use JSON lib to convert js object to string
+    localStorage.setItem(this.LOCAL_STORAGE_USERDATA, JSON.stringify(user));
+    // call to autoLogout after expiration time
+    // + (plus) is for parsing respData.expiresIn to number
+    this.autoLogout(+respData.expiresIn * 1000)
   }
 
-  private handleError(errorResp: HttpErrorResponse) {
+  private static handleError(errorResp: HttpErrorResponse) {
     let errorMessage = 'Unknown Error'
     if (!errorResp.error || !errorResp.error.error) {
       return throwError(errorMessage);

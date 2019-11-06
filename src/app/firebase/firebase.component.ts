@@ -41,7 +41,6 @@ export class FirebaseComponent implements OnInit {
     });
   }
 
-
   onClearPosts() {
     this.postService.deletePosts().subscribe(() => {
       this.loadedPosts = [];

@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LoggingService} from "./services/logging.service";
 import {OffersService} from "./services/offers.service";
+import {AuthService} from "./services/auth.service";
 
 @Component({
   // this selector is used in index.html
@@ -12,7 +13,14 @@ import {OffersService} from "./services/offers.service";
   // every component is child of it and will have access to this providers
   providers: [LoggingService, OffersService],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  constructor(private auth: AuthService) {
+  }
+
+  ngOnInit(): void {
+    this.auth.autoLogin();
+  }
 }
 
 // to create new component type in terminal (inside project dir)

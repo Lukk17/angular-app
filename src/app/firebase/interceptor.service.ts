@@ -8,10 +8,10 @@ import {AuthService} from "../services/auth.service";
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
 
-  constructor(private auth: AuthService){}
+  constructor(private auth: AuthService) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     let token = null;
     this.auth.user.pipe(
       // take with count 1 will get data only once from observable
@@ -20,9 +20,8 @@ export class InterceptorService implements HttpInterceptor {
       token = user.token;
     });
 
-
     // if no token then do not add anything to as parameter
-    if(!token) {
+    if (!token) {
       return next.handle(req);
     }
 
@@ -33,11 +32,11 @@ export class InterceptorService implements HttpInterceptor {
         params: new HttpParams().set('auth', token)
       });
     return next.handle(modifiedReq)
-      // with pipe and tap response can be altered
+    // with pipe and tap response can be altered
       .pipe(
-      tap(event => {
-        console.log("interceptor logging response event type: " + event.type)
-      })
-    );
+        tap(event => {
+          console.log("interceptor logging response event type: " + event.type)
+        })
+      );
   }
 }

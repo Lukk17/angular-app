@@ -2,7 +2,6 @@ import {Injectable} from "@angular/core";
 import {PostModel} from "../firebase/post.model";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {map} from "rxjs/operators";
-import {AuthService} from "./auth.service";
 
 // provided in root mean same
 // as it will be added to app.module.ts or app.component.ts section of: "providers: [],"
@@ -14,10 +13,7 @@ export class PostsService {
 
   private url = 'https://angular-app-5208d.firebaseio.com/';
 
-  constructor(
-    private http: HttpClient,
-    private auth: AuthService
-  ) {
+  constructor(private http: HttpClient) {
   }
 
   createPost(title: string, content: string) {
@@ -90,5 +86,4 @@ export class PostsService {
   deletePosts() {
     return this.http.delete(this.url + 'posts.json');
   }
-
 }

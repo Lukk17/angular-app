@@ -1,9 +1,9 @@
 <nav class="navbar-default">
   <div class="container-fluid ">
-      <a class="navbar-brand" (click)="routeToHome()" >Angular</a>
+    <a class="navbar-brand" (click)="routeToHome()">Angular</a>
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
-<!--   routerLinkActive will add CSS class when this route is active     -->
+        <!--   routerLinkActive will add CSS class when this route is active     -->
         <li routerLinkActive="active">
           <a routerLink="/offers">Offers</a>
         </li>
