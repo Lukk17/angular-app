@@ -4,11 +4,26 @@
     <div class="collapse navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
 <!--   routerLinkActive will add CSS class when this route is active     -->
-        <li routerLinkActive="active"><a routerLink="/offers">Offers</a></li>
-        <li routerLinkActive="active"><a routerLink="/extras">extras</a></li>
-        <li routerLinkActive="active"><a routerLink="/form">form</a></li>
-        <li routerLinkActive="active"><a routerLink="/firebase">firebase</a></li>
-        <li routerLinkActive="active"><a routerLink="/auth">auth</a></li>
+        <li routerLinkActive="active">
+          <a routerLink="/offers">Offers</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/extras">extras</a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/form">form</a>
+        </li>
+        <li routerLinkActive="active" *ngIf="isAuth">
+          <a routerLink="/firebase">firebase</a>
+        </li>
+        <li routerLinkActive="active" *ngIf="!isAuth">
+          <a routerLink="/auth">auth</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a style="cursor: pointer" (click)="logout()" *ngIf="isAuth">Logout</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdown>

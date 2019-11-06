@@ -1,17 +1,32 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoggingService} from "../services/logging.service";
+import {AuthService} from "../services/auth.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   collapsed = true;
-  constructor(private router: Router, private route: ActivatedRoute, private logger: LoggingService) { }
+  private userSub: Subscription;
+  isAuth = false;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private logger: LoggingService,
+    private auth: AuthService
+  ) {
+  }
 
   ngOnInit() {
+    this.userSub = this.auth.user.subscribe(user => {
+      // true if there is user, false if there is not
+      this.isAuth = !!user
+    });
   }
 
   routeToHome() {
@@ -20,5 +35,13 @@ export class HeaderComponent implements OnInit {
     // now it will add this to previous path
     // this.router.navigate(['/'], {relativeTo: this.route}).then(r => this.logger.log("Route to home"))
     this.router.navigate(['/']).then(r => this.logger.log("Route to home"))
+  }
+
+  ngOnDestroy(): void {
+    this.userSub.unsubscribe();
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

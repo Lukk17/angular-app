@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
+import {AuthResponseData, AuthService} from "../services/auth.service";
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +14,7 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   error: string = null;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -32,24 +34,26 @@ export class AuthComponent implements OnInit {
     const email = authForm.value.email;
     const password = authForm.value.password;
 
+    let authObs: Observable<AuthResponseData>;
+
     this.isLoading = true;
 
-    if(this.isLoginMode){
-      return
+    if (this.isLoginMode) {
+      authObs = this.authService.login(email, password);
+    } else {
+      authObs = this.authService.signUp(email, password);
     }
 
-    else {
-      this.authService.signup(email, password).subscribe(responseData => {
-          console.log(responseData);
-          this.isLoading = false;
-        },
-        errorMessage => {
-        // error handling is in auth.service.ts
-          console.error(errorMessage);
-          this.error = errorMessage;
-          this.isLoading = false;
-        });
-      authForm.reset();
-    }
+    authObs.subscribe(response => {
+        console.log(response);
+        this.isLoading = false;
+        this.router.navigate(['/firebase']);
+      },
+      errorMessage => {
+        console.error(errorMessage);
+        this.error = errorMessage;
+        this.isLoading = false;
+      }
+    );
   }
 }

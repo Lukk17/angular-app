@@ -14,7 +14,10 @@ export class FirebaseComponent implements OnInit {
   error = null;
   private url = 'https://angular-app-5208d.firebaseio.com/';
 
-  constructor(private http: HttpClient, private postService: PostsService) {
+  constructor(
+    private http: HttpClient,
+    private postService: PostsService,
+  ) {
   }
 
   ngOnInit() {

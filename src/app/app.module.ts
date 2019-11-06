@@ -19,9 +19,10 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormComponent} from './form/form.component';
 import {ReactiveFormComponent} from './form/reactive-form/reactive-form.component';
 import {FirebaseComponent} from './firebase/firebase.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthComponent} from './auth/auth.component';
 import {LoadingComponent} from './loading/loading.component';
+import {InterceptorService} from "./firebase/interceptor.service";
 
 
 @NgModule({
@@ -53,14 +54,14 @@ import {LoadingComponent} from './loading/loading.component';
     HttpClientModule
   ],
 
+  // in interceptors authenticating token is added to every http request
   // interceptors service must be provided here as below:
-  // disable as it was interfering with login component
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: InterceptorService,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
