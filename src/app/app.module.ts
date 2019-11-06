@@ -19,8 +19,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import {FormComponent} from './form/form.component';
 import {ReactiveFormComponent} from './form/reactive-form/reactive-form.component';
 import {FirebaseComponent} from './firebase/firebase.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {InterceptorService} from "./firebase/interceptor.service";
+import {HttpClientModule} from "@angular/common/http";
+import {AuthComponent} from './auth/auth.component';
+import {LoadingComponent} from './loading/loading.component';
 
 
 @NgModule({
@@ -41,6 +42,8 @@ import {InterceptorService} from "./firebase/interceptor.service";
     FormComponent,
     ReactiveFormComponent,
     FirebaseComponent,
+    AuthComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,12 +54,13 @@ import {InterceptorService} from "./firebase/interceptor.service";
   ],
 
   // interceptors service must be provided here as below:
+  // disable as it was interfering with login component
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptorService,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })
