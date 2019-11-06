@@ -23,6 +23,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthComponent} from './auth/auth.component';
 import {LoadingComponent} from './loading/loading.component';
 import {InterceptorService} from "./firebase/interceptor.service";
+import {AuthGuard} from "./auth/auth.guard";
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {InterceptorService} from "./firebase/interceptor.service";
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
