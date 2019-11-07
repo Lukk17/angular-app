@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {BoxComponent} from './simpleBoxes/box/box.component';
@@ -18,6 +17,9 @@ import {LoadingComponent} from './loading/loading.component';
 import {InterceptorService} from "./firebase/interceptor.service";
 import {AuthGuard} from "./auth/auth.guard";
 import {OffersModule} from "./offers/offers.module";
+import {SharedModule} from "./shared/shared.module";
+import {LoggingService} from "./services/logging.service";
+import {OffersService} from "./services/offers.service";
 
 
 @NgModule({
@@ -36,16 +38,20 @@ import {OffersModule} from "./offers/offers.module";
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    OffersModule
+    OffersModule,
+    SharedModule
   ],
 
-  // in interceptors authenticating token is added to every http request
-  // interceptors service must be provided here as below:
+  // if added here to provider - service will be accessible by every child
+  // as this is main class,
+  // every component is child of it and will have access to this providers
   providers: [
+    LoggingService,
+    OffersService,
+    // in interceptors authenticating token is added to every http request
+    // interceptors service must be provided here as below:
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

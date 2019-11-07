@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {LoggingService} from "./services/logging.service";
-import {OffersService} from "./services/offers.service";
 import {AuthService} from "./services/auth.service";
 
 @Component({
@@ -8,10 +6,6 @@ import {AuthService} from "./services/auth.service";
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  // if added here to provider - service will be accessible by every child
-  // as this is main class,
-  // every component is child of it and will have access to this providers
-  providers: [LoggingService, OffersService],
 })
 export class AppComponent implements OnInit {
 
