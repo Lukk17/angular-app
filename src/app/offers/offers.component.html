@@ -1,15 +1,15 @@
 <hr>
 <!--  use custom structural directive  -->
 <div *appUnless="false">
-  <h3 appBasicHighlight>Offers</h3>
+<!--  <h3 appBasicHighlight>Offers</h3>-->
 </div>
 <!--  use custom structural directive via ng-template - ngFor and ngIf can be used same way  -->
 <ng-template [appUnless]="false">
-  <h3 appBasicHighlight>Offers: ng-template</h3>
+<!--  <h3 appBasicHighlight>Offers: ng-template</h3>-->
 </ng-template>
 
 <!--  use custom directive  -->
-<h3 appRendererHighlight [initialColor]="'red'" [defaultColor]="'yellow'" [activeColor]="'blue'">Offers : renderer</h3>
+<h3 appRendererHighlight [initialColor]="'yellow'" [defaultColor]="'red'" [activeColor]="'blue'">Offers : renderer</h3>
 <hr>
 
 <div class="row">

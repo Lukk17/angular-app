@@ -19,6 +19,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {SharedModule} from "./shared/shared.module";
 import {LoggingService} from "./services/logging.service";
 import {OffersService} from "./services/offers.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {OffersService} from "./services/offers.service";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
   ],
 
   // if added here to provider - service will be accessible by every child

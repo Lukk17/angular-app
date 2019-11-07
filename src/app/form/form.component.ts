@@ -9,7 +9,7 @@ import {NgForm} from "@angular/forms";
 export class FormComponent implements OnInit {
 
   //  local reference from selector can be accessed as well in this way:
-  @ViewChild('form') signUpFrom: NgForm;
+  @ViewChild('form', { static: true }) signUpFrom: NgForm;
   submitted = false;
   answer = '';
   genders = ['man', 'women'];
