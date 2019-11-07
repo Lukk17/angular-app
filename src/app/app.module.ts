@@ -5,14 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {BoxComponent} from './simpleBoxes/box/box.component';
 import {BoxesComponent} from './simpleBoxes/boxes/boxes.component';
-import {OffersComponent} from './offers/offers.component';
-import {OffersListComponent} from './offers/offers-list/offers-list.component';
-import {OfferDetailComponent} from './offers/offer-detail/offer-detail.component';
 import {HeaderComponent} from './header/header.component';
-import {BookedListComponent} from './offers/booked-list/booked-list.component';
-import {BasicHighlightDirective} from "./directive/basic-highlight.directive";
-import {RendererHighlightDirective} from './directive/renderer-highlight.directive';
-import {AppUnlessDirective} from './directive/app-unless.directive';
 import {DropdownDirective} from './directive/dropdown.directive';
 import {ExtrasComponent} from './extras/extras.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -24,6 +17,7 @@ import {AuthComponent} from './auth/auth.component';
 import {LoadingComponent} from './loading/loading.component';
 import {InterceptorService} from "./firebase/interceptor.service";
 import {AuthGuard} from "./auth/auth.guard";
+import {OffersModule} from "./offers/offers.module";
 
 
 @NgModule({
@@ -31,14 +25,7 @@ import {AuthGuard} from "./auth/auth.guard";
     AppComponent,
     BoxComponent,
     BoxesComponent,
-    OffersComponent,
-    OffersListComponent,
-    OfferDetailComponent,
     HeaderComponent,
-    BookedListComponent,
-    BasicHighlightDirective,
-    RendererHighlightDirective,
-    AppUnlessDirective,
     DropdownDirective,
     ExtrasComponent,
     FormComponent,
@@ -52,7 +39,8 @@ import {AuthGuard} from "./auth/auth.guard";
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    OffersModule
   ],
 
   // in interceptors authenticating token is added to every http request

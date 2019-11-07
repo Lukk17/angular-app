@@ -1,6 +1,4 @@
 import {RouterModule, Routes} from "@angular/router";
-import {OffersComponent} from "./offers/offers.component";
-import {OfferDetailComponent} from "./offers/offer-detail/offer-detail.component";
 import {ExtrasComponent} from "./extras/extras.component";
 import {NgModule} from "@angular/core";
 import {FormComponent} from "./form/form.component";
@@ -15,13 +13,7 @@ import {AuthGuard} from "./auth/auth.guard";
 //  also add routerLink="/path"
 //  as links in html file for example in header
 const appRoutes: Routes = [
-  {path: '', redirectTo: "/offers", pathMatch: "full"},
-  {
-    path: 'offers', component: OffersComponent, children: [
-      // for offers detail link, ":name" where name can be anything
-      {path: ':name/:desc', component: OfferDetailComponent},
-    ]
-  },
+  {path: '', redirectTo: "/auth", pathMatch: "full"},
   {path: 'extras', component: ExtrasComponent},
   {path: 'form', component: FormComponent},
   {

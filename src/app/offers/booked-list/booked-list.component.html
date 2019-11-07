@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-5" style="position: fixed; left: 33%">
+  <div class="col-md-offset-5">
     <a *ngFor="let bookedRoom of bookedOffers" class="list-group-item clearfix" routerLinkActive="active"
        (click)="emitOffer(bookedRoom)" routerLink="/offers/{{bookedRoom.name}}/{{bookedRoom.description}}">
       <div class="pull-left">
