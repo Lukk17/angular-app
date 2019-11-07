@@ -16,7 +16,6 @@ import {AuthComponent} from './auth/auth.component';
 import {LoadingComponent} from './loading/loading.component';
 import {InterceptorService} from "./firebase/interceptor.service";
 import {AuthGuard} from "./auth/auth.guard";
-import {OffersModule} from "./offers/offers.module";
 import {SharedModule} from "./shared/shared.module";
 import {LoggingService} from "./services/logging.service";
 import {OffersService} from "./services/offers.service";
@@ -36,11 +35,11 @@ import {OffersService} from "./services/offers.service";
     AuthComponent,
     LoadingComponent,
   ],
+  // component which is lazy loading cannot be imported here
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    OffersModule,
     SharedModule
   ],
 

@@ -17,6 +17,10 @@ export class AppComponent implements OnInit {
   }
 }
 
+// for production build which will run optimization and make app smaller:
+// ng build --prod
+// builded app will be in folder "dist"
+
 // to create new component type in terminal (inside project dir)
 // ng g c <componentName>
 // or:

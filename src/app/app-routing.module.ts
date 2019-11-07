@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from "@angular/router";
+import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
 import {ExtrasComponent} from "./extras/extras.component";
 import {NgModule} from "@angular/core";
 import {FormComponent} from "./form/form.component";
@@ -21,12 +21,23 @@ const appRoutes: Routes = [
     component: FirebaseComponent,
     canActivate: [AuthGuard],
   },
-  {path: 'auth', component: AuthComponent}
+  {path: 'auth', component: AuthComponent},
+  // for lazy loading:
+  // loadChildren specify path and after hashtag # Module name
+  // which should be loaded only when user click on it
+  {
+    path: 'offers',
+    // for angular 8+ in tsconfig.json change module to "module": "esnext",
+    // then this syntax can be used:
+    // loadChildren: () => import('./your-module-path/module-name.module').then(m => m.ModuleName)
+    loadChildren: './offers/offers.module#OffersModule'
+  }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    // {preloadingStrategy: PreloadAllModules} will preload all lazy modules
+    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules})
   ],
   exports: [RouterModule]
 })

@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./offer-detail.component.css'],
 })
 export class OfferDetailComponent implements OnInit, OnDestroy {
-    private offer: Offer;
+  offer: Offer;
   private sub: Subscription;
 
   constructor(private route: ActivatedRoute, private offersService: OffersService) {

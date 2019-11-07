@@ -5,7 +5,9 @@ import {NgModule} from "@angular/core";
 
 const offersRoutes: Routes = [
   {
-    path: 'offers', component: OffersComponent, children: [
+    path: '',
+    component: OffersComponent,
+    children: [
       // for offers detail link, ":name" where name can be anything
       {path: ':name/:desc', component: OfferDetailComponent}
     ]
