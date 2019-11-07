@@ -4,6 +4,7 @@ import {catchError, tap} from "rxjs/operators";
 import {BehaviorSubject, throwError} from "rxjs";
 import {User} from "../auth/user.model";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 export interface AuthResponseData {
   idToken: string,
@@ -21,7 +22,7 @@ export class AuthService {
 
   // API key is in firebase project settings
   // <appAddress>/settings/general/
-  private firebaseAPIkey = 'AIzaSyApUv_owosn0Lufw9ZtJs5f5xigHur6paE';
+  private firebaseAPIkey = environment.firebaseAPIkey;
   // url from https://firebase.google.com/docs/reference/rest/auth
   private signUpURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
   private logInURL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='
